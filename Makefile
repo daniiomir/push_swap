@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT = lib/
+LIBFT = lib
 LIBFT_PATH = lib/libft.a
 PUSH_SWAP = push_swap
 CHECKER = checker
@@ -19,36 +19,43 @@ HEADERS = -I includes/
 FLAGS = -Wall -Wextra -Werror
 
 SRC_FOLDER = src
+OBJ_FOLDER = obj
 
-CH_SRC_NAMES = ch_main.c
-PS_SRC_NAMES = ps_main.c
+CH_SRC_NAMES = #ch_main.c tools.c
+PS_SRC_NAMES = ps_main.c tools.c
 
 CH_SRC = $(addprefix $(SRC_FOLDER)/, $(CH_SRC_NAMES))
 PS_SRC = $(addprefix $(SRC_FOLDER)/, $(PS_SRC_NAMES))
 
-CH_OBJ = $(CH_SRC_NAMES:.c=.o)
-PS_OBJ = $(PS_SRC_NAMES:.c=.o)
+CH_OBJ = $(addprefix $(OBJ_FOLDER)/, $(CH_SRC_NAMES:.c=.o))
+PS_OBJ = $(addprefix $(OBJ_FOLDER)/, $(PS_SRC_NAMES:.c=.o))
 
-all: $(LIB) $(PS) # $(CHECKER)
+all: $(LIBFT_PATH) $(PUSH_SWAP) # $(CHECKER)
 
-%.o: $(SRC_FOLDER)/%.c
-	gcc $(FLAGS) $(HEADERS) -c $< -o $@
+$(OBJ_FOLDER)/%.o: $(SRC_FOLDER)/%.c
+	@mkdir -p $(OBJ_FOLDER)
+	@gcc $(FLAGS) $(HEADERS) -c $< -o $@
+	@echo "Obj -> done"
 
-$(LIB):
-	make -C $(LIBFT)
+$(LIBFT_PATH):
+	@make -C $(LIBFT)
+	@echo "Libft -> done"
 
-$(CHECKER): $(CH_OBJ)
-	gcc -o $@ $(CH_OBJ) $(HEADERS) $(LIBFT_PATH)
+# $(CHECKER): $(CH_OBJ)
+# 	gcc $(CH_OBJ) $(HEADERS) -L. $(LIBFT_PATH) -o $(CHECKER)
 
-$(PS): $(PS_OBJ)
-	gcc -o $(PUSH_SWAP) $(PS_OBJ) $(HEADERS) $(LIBFT_PATH)
+$(PUSH_SWAP): $(PS_OBJ)
+	@gcc $(PS_OBJ) $(HEADERS) -L. $(LIBFT_PATH) -o $(PUSH_SWAP)
+	@echo "Push_swap binary -> done"
 
 clean:
 	@make clean -C $(LIBFT)
-	@/bin/rm -f $(CH_OBJ) $(PS_OBJ)
+	@/bin/rm -rf $(OBJ_FOLDER)
+	@echo "Obj removed"
 
 fclean: clean
 	@make fclean -C $(LIBFT)
 	@/bin/rm -f $(PUSH_SWAP) $(CHECKER)
+	@echo "Binaries removed"
 
 re: fclean all

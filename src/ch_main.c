@@ -10,5 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
 int		main(int argc, char **argv)
-{}
+{
+	int	i;
+	int num;
+
+	if (argc > 1)
+	{
+		i = 1;
+		while (argc > i)
+		{
+			num = validation(argv[i]);
+			i++;
+		}
+	}
+	else
+		ft_error();
+}

@@ -14,15 +14,18 @@
 
 int		main(int argc, char **argv)
 {
-	size_t	i;
+	int	i;
+	int num;
 
 	if (argc > 1)
 	{
-		i = 0;
-		while (argc > (int)i + 1)
+		i = 1;
+		while (argc > i)
 		{
-			ft_putstr(argv[i]);
+			num = validation(argv[i]);
 			i++;
 		}
 	}
+	else
+		ft_error();
 }

@@ -23,5 +23,6 @@ typedef struct		s_stack
 }					t_stack;
 
 void				ft_error(void);
+int					validation(char *arg);
 
 #endif
