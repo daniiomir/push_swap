@@ -114,5 +114,6 @@ char				*ft_strjoin_free2(char *s1, char *s2);
 char				*ft_strjoin_free_all(char *s1, char *s2);
 int					ft_search_helper(const char *string, char search);
 void				ft_strset(char *string, size_t len, char c);
+size_t				ft_count_words(const char *s, char c);
 
 #endif
