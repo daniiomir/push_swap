@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: swarner <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/02 15:26:19 by swarner           #+#    #+#             */
-/*   Updated: 2019/09/12 18:00:26 by swarner          ###   ########.fr       */
+/*   Created: 2019/09/11 19:12:37 by swarner           #+#    #+#             */
+/*   Updated: 2019/09/11 19:19:37 by swarner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OPERATIONS_H
+#include "push_swap.h"
 
-# define OPERATIONS_H
+void	print_stacks(t_tools *tools)
+{
+	size_t	i;
 
-# include "libft.h"
-# include "push_swap.h"
-
-void	sa(t_tools *tools);
-void	sb(t_tools *tools);
-void	ss(t_tools *tools);
-
-void	pa(t_tools *tools);
-void	pb(t_tools *tools);
-
-void	ra(t_tools *tools);
-void	rb(t_tools *tools);
-void	rr(t_tools *tools);
-
-void	rra(t_tools *tools);
-void	rrb(t_tools *tools);
-void	rrr(t_tools *tools);
-
-#endif
+	i = 0;
+	ft_putstr("Stack A: ");
+	while (i < tools->size_a)
+	{
+		ft_putnbr(tools->stack_a[i++]);
+		ft_putstr(" ");
+	}
+	ft_putstr("\n");
+	i = 0;
+	ft_putstr("Stack B: ");
+	while (i < tools->size_b)
+	{
+		ft_putnbr(tools->stack_b[i++]);
+		ft_putstr(" ");
+	}
+	ft_putstr("\n\n");
+}
