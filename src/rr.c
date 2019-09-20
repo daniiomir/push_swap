@@ -6,7 +6,7 @@
 /*   By: swarner <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:49:54 by swarner           #+#    #+#             */
-/*   Updated: 2019/09/12 18:02:25 by swarner          ###   ########.fr       */
+/*   Updated: 2019/09/19 19:32:48 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	move_int_down(const int *original, int *new, size_t len)
 	}
 }
 
-void		rra(t_tools *tools)
+void		rra(t_tools *tools, int is_visible)
 {
 	int 	*new_stack;
 	size_t	counter;
@@ -39,9 +39,12 @@ void		rra(t_tools *tools)
 	new_stack[0] = temp;
 	free(tools->stack_a);
 	tools->stack_a = new_stack;
+	if (is_visible)
+		ft_putstr("rra\n");
+//	print_stacks(tools);
 }
 
-void		rrb(t_tools *tools)
+void		rrb(t_tools *tools, int is_visible)
 {
 	int 	*new_stack;
 	size_t	counter;
@@ -56,10 +59,15 @@ void		rrb(t_tools *tools)
 	new_stack[0] = temp;
 	free(tools->stack_b);
 	tools->stack_b = new_stack;
+	if (is_visible)
+		ft_putstr("rrb\n");
+//	print_stacks(tools);
 }
 
-void		rrr(t_tools *tools)
+void		rrr(t_tools *tools, int is_visible)
 {
-	rra(tools);
-	rrb(tools);
+	rra(tools, 0);
+	rrb(tools, 0);
+	if (is_visible)
+		ft_putstr("rrr\n");
 }

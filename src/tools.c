@@ -6,7 +6,7 @@
 /*   By: swarner <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 15:41:09 by swarner           #+#    #+#             */
-/*   Updated: 2019/09/11 18:08:35 by swarner          ###   ########.fr       */
+/*   Updated: 2019/09/20 13:27:14 by swarner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,18 @@ void	init_valies(t_tools *tools)
 	tools->count_of_num = 0;
 	tools->size_a = 0;
 	tools->size_b = 0;
+	tools->error = 0;
 }
 
-int		validation(char *arg)
+int		validation(t_tools *tools, char *arg)
 {
 	ssize_t	num;
 
 	num = ft_atoi(arg);
-	if (num > 2147483647 || num < -2147483648)
-		ft_error();
+	if (num > 2147483647 || num < -2147483648 || num == -1)
+		tools->error = 1;
 	if (num + '0' != arg[0] && num == 0)
-		ft_error();
+		tools->error = 1;
 	return (num);
 }
 
@@ -50,7 +51,7 @@ size_t 	find_duplicates(t_tools *tools)
 		j = 0;
 		count = 0;
 		is_dup = 0;
-		while (j < tools->count_of_num - 1)
+		while (j < tools->count_of_num)
 		{
 			if (tools->stack_a[i] == tools->stack_a[j] && !count && !is_dup)
 			{
@@ -105,9 +106,8 @@ void	handle_arg(char *arg, t_tools *tools, size_t *counter)
 	args_count = ft_count_words(arg, ' ');
 	if (args_count == 1)
 	{
-		num = validation(arg);
+		num = validation(tools, arg);
 		tools->stack_a[i++] = num;
-		//ft_putnbr(num);
 	}
 	else
 	{
@@ -115,10 +115,9 @@ void	handle_arg(char *arg, t_tools *tools, size_t *counter)
 		j = 0;
 		while (j < args_count)
 		{
-			num = validation(few_args[j]);
+			num = validation(tools, few_args[j]);
             tools->stack_a[i++] = num;
 			free(few_args[j++]);
-			//ft_putnbr(num);
 		}
 		free(few_args);
 	}

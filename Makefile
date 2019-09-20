@@ -21,8 +21,8 @@ FLAGS = -Wall -Wextra -Werror
 SRC_FOLDER = src
 OBJ_FOLDER = obj
 
-CH_SRC_NAMES = #ch_main.c tools.c
-PS_SRC_NAMES = ps_main.c tools.c tools2.c p.c s.c r.c rr.c
+CH_SRC_NAMES = ch_main.c tools.c tools2.c p.c s.c r.c rr.c
+PS_SRC_NAMES = ps_main.c tools.c tools2.c p.c s.c r.c rr.c algorithm.c
 
 CH_SRC = $(addprefix $(SRC_FOLDER)/, $(CH_SRC_NAMES))
 PS_SRC = $(addprefix $(SRC_FOLDER)/, $(PS_SRC_NAMES))
@@ -30,7 +30,7 @@ PS_SRC = $(addprefix $(SRC_FOLDER)/, $(PS_SRC_NAMES))
 CH_OBJ = $(addprefix $(OBJ_FOLDER)/, $(CH_SRC_NAMES:.c=.o))
 PS_OBJ = $(addprefix $(OBJ_FOLDER)/, $(PS_SRC_NAMES:.c=.o))
 
-all: $(LIBFT_PATH) $(PUSH_SWAP) # $(CHECKER)
+all: $(LIBFT_PATH) $(PUSH_SWAP) $(CHECKER)
 
 $(OBJ_FOLDER)/%.o: $(SRC_FOLDER)/%.c
 	@mkdir -p $(OBJ_FOLDER)
@@ -41,8 +41,9 @@ $(LIBFT_PATH):
 	@make -C $(LIBFT)
 	@echo "Libft -> done"
 
-# $(CHECKER): $(CH_OBJ)
-# 	gcc $(CH_OBJ) $(HEADERS) -L. $(LIBFT_PATH) -o $(CHECKER)
+$(CHECKER): $(CH_OBJ)
+	@gcc $(CH_OBJ) $(HEADERS) -L. $(LIBFT_PATH) -o $(CHECKER)
+	@echo "Checker binary -> done"
 
 $(PUSH_SWAP): $(PS_OBJ)
 	@gcc $(PS_OBJ) $(HEADERS) -L. $(LIBFT_PATH) -o $(PUSH_SWAP)

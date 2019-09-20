@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	sa(t_tools *tools)
+void	sa(t_tools *tools, int is_visible)
 {
 	int temp;
 
@@ -21,9 +21,12 @@ void	sa(t_tools *tools)
 	temp = tools->stack_a[0];
 	tools->stack_a[0] = tools->stack_a[1];
 	tools->stack_a[1] = temp;
+	if (is_visible)
+		ft_putstr("sa\n");
+//	print_stacks(tools);
 }
 
-void	sb(t_tools *tools)
+void	sb(t_tools *tools, int is_visible)
 {
 	int temp;
 
@@ -32,10 +35,15 @@ void	sb(t_tools *tools)
 	temp = tools->stack_b[0];
 	tools->stack_b[0] = tools->stack_b[1];
 	tools->stack_b[1] = temp;
+	if (is_visible)
+		ft_putstr("sb\n");
+//	print_stacks(tools);
 }
 
-void	ss(t_tools *tools)
+void	ss(t_tools *tools, int is_visible)
 {
-	sa(tools);
-	sb(tools);
+	sa(tools, 0);
+	sb(tools, 0);
+	if (is_visible)
+		ft_putstr("ss\n");
 }

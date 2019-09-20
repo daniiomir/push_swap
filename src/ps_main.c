@@ -6,7 +6,7 @@
 /*   By: swarner <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 15:24:42 by swarner           #+#    #+#             */
-/*   Updated: 2019/09/12 16:13:33 by swarner          ###   ########.fr       */
+/*   Updated: 2019/09/20 13:24:41 by swarner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,12 @@
 int		main(int argc, char **argv)
 {
 	int		    i;
-	size_t		j;
 	size_t 		counter;
 	t_tools	    tools;
 
 	if (argc > 1)
 	{
 		i = 1;
-		j = 0;
 		counter = 0;
 		init_valies(&tools);
 		len_for_stack(argc, argv, &tools);
@@ -33,8 +31,9 @@ int		main(int argc, char **argv)
 			handle_arg(argv[i++], &tools, &counter);
 		if (find_duplicates(&tools))
 			ft_error();
-		print_stacks(&tools);
-		pb(&tools);
+		if (!is_sorted(&tools))
+			algorithm(&tools);
+//		print_stacks(&tools);
 		free(tools.stack_a);
 		free(tools.stack_b);
 	}

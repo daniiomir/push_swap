@@ -23,14 +23,17 @@ typedef struct		s_tools
 	size_t 			count_of_num;
 	size_t			size_a;
 	size_t 			size_b;
+	size_t 			error;
 }					t_tools;
 
 void				ft_error(void);
 void				init_valies(t_tools *tools);
-int					validation(char *arg);
+int					validation(t_tools *tools, char *arg);
 size_t 				find_duplicates(t_tools *tools);
+size_t				is_sorted(t_tools *tools);
 void				handle_arg(char *arg, t_tools *tools, size_t *counter);
 void 				len_for_stack(int argc, char **argv, t_tools *tools);
+void 				algorithm(t_tools *tools);
 
 
 void				print_stacks(t_tools *tools);

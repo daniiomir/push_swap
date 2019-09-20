@@ -43,7 +43,7 @@ static void	move_int(int *stack, size_t len)
 		stack[i + 1] = stack[i];
 }
 
-void	pa(t_tools *tools)
+void	pa(t_tools *tools, int is_visible)
 {
 	int		*stack1;
 	int		*stack2;
@@ -63,9 +63,12 @@ void	pa(t_tools *tools)
 	free(tools->stack_b);
 	tools->stack_a = stack1;
 	tools->stack_b = stack2;
+	if (is_visible)
+		ft_putstr("pa\n");
+//	print_stacks(tools);
 }
 
-void	pb(t_tools *tools)
+void	pb(t_tools *tools, int is_visible)
 {
 	int		*stack1;
 	int		*stack2;
@@ -85,4 +88,7 @@ void	pb(t_tools *tools)
 	free(tools->stack_b);
 	tools->stack_a = stack1;
 	tools->stack_b = stack2;
+	if (is_visible)
+		ft_putstr("pb\n");
+//	print_stacks(tools);
 }

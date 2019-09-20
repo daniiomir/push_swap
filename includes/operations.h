@@ -17,19 +17,19 @@
 # include "libft.h"
 # include "push_swap.h"
 
-void	sa(t_tools *tools);
-void	sb(t_tools *tools);
-void	ss(t_tools *tools);
+void	sa(t_tools *tools, int is_visible);
+void	sb(t_tools *tools, int is_visible);
+void	ss(t_tools *tools, int is_visible);
 
-void	pa(t_tools *tools);
-void	pb(t_tools *tools);
+void	pa(t_tools *tools, int is_visible);
+void	pb(t_tools *tools, int is_visible);
 
-void	ra(t_tools *tools);
-void	rb(t_tools *tools);
-void	rr(t_tools *tools);
+void	ra(t_tools *tools, int is_visible);
+void	rb(t_tools *tools, int is_visible);
+void	rr(t_tools *tools, int is_visible);
 
-void	rra(t_tools *tools);
-void	rrb(t_tools *tools);
-void	rrr(t_tools *tools);
+void	rra(t_tools *tools, int is_visible);
+void	rrb(t_tools *tools, int is_visible);
+void	rrr(t_tools *tools, int is_visible);
 
 #endif
