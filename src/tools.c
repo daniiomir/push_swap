@@ -6,7 +6,7 @@
 /*   By: swarner <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 15:41:09 by swarner           #+#    #+#             */
-/*   Updated: 2019/09/20 13:27:14 by swarner          ###   ########.fr       */
+/*   Updated: 2019/09/24 15:02:00 by swarner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	init_valies(t_tools *tools)
 	tools->size_a = 0;
 	tools->size_b = 0;
 	tools->error = 0;
+	tools->debug = 0;
+	tools->is_visible = 0;
 }
 
 int		validation(t_tools *tools, char *arg)
@@ -46,7 +48,7 @@ size_t 	find_duplicates(t_tools *tools)
 	size_t			is_dup;
 
 	i = 0;
-	while (i < tools->count_of_num)
+	while (i < tools->count_of_num - 1)
 	{
 		j = 0;
 		count = 0;

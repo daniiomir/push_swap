@@ -6,37 +6,37 @@
 /*   By: swarner <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 15:24:53 by swarner           #+#    #+#             */
-/*   Updated: 2019/09/20 13:14:33 by swarner          ###   ########.fr       */
+/*   Updated: 2019/09/24 16:09:44 by swarner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "operations.h"
 
-static void	operations(t_tools *tools, char *operation)
+static void	find_operations(t_tools *tools, char *op)
 {
-	if (ft_strequ(operation, "sa"))
-		sa(tools, 0);
-	else if (ft_strequ(operation, "sb"))
-		sb(tools, 0);
-	else if (ft_strequ(operation, "ss"))
-		ss(tools, 0);
-	else if (ft_strequ(operation, "pa"))
-		pa(tools, 0);
-	else if (ft_strequ(operation, "pb"))
-		pb(tools, 0);
-	else if (ft_strequ(operation, "ra"))
-		ra(tools, 0);
-	else if (ft_strequ(operation, "rb"))
-		rb(tools, 0);
-	else if (ft_strequ(operation, "rr"))
-		rr(tools, 0);
-	else if (ft_strequ(operation, "rra"))
-		rra(tools, 0);
-	else if (ft_strequ(operation, "rrb"))
-		rrb(tools, 0);
-	else if (ft_strequ(operation, "rrr"))
-		rrr(tools, 0);
+	if (ft_strequ(op, "sa"))
+		operation(sa, tools);
+	else if (ft_strequ(op, "sb"))
+		operation(sb, tools);
+	else if (ft_strequ(op, "ss"))
+		operation(ss, tools);
+	else if (ft_strequ(op, "pa"))
+		operation(pa, tools);
+	else if (ft_strequ(op, "pb"))
+		operation(pb, tools);
+	else if (ft_strequ(op, "ra"))
+		operation(ra, tools);
+	else if (ft_strequ(op, "rb"))
+		operation(rb, tools);
+	else if (ft_strequ(op, "rr"))
+		operation(rr, tools);
+	else if (ft_strequ(op, "rra"))
+		operation(rra, tools);
+	else if (ft_strequ(op, "rrb"))
+		operation(rrb, tools);
+	else if (ft_strequ(op, "rrr"))
+		operation(rrr, tools);
 	else
 		tools->error = 1;
 }
@@ -47,7 +47,7 @@ static void	checker(t_tools *tools)
 
 	while (get_next_line(0, &operation))
 	{
-		operations(tools, operation);
+		find_operations(tools, operation);
 		if (tools->error)
 			return ;
 		free(operation);
@@ -64,10 +64,11 @@ int			main(int argc, char **argv)
 	{
 		i = 1;
 		counter = 0;
+		tools.debug = 0;
 		init_valies(&tools);
 		len_for_stack(argc, argv, &tools);
-		tools.stack_a = (int *)malloc(sizeof(int) * tools.count_of_num);
-		tools.stack_b = (int *)malloc(sizeof(int) * tools.count_of_num);
+		tools.stack_a = create_stack(tools.count_of_num);
+		tools.stack_b = create_stack(tools.count_of_num);
 		while (argc > i)
 			handle_arg(argv[i++], &tools, &counter);
 		if (!tools.error && !find_duplicates(&tools))
@@ -76,9 +77,9 @@ int			main(int argc, char **argv)
 			if (tools.error)
 				ft_error();
 			else if (is_sorted(&tools) && !tools.size_b)
-				ft_putstr("OK\n");
+				ft_putstr("\x1b[32mOK\n");
 			else
-				ft_putstr("KO\n");
+				ft_putstr("\x1b[31mKO\n");
 		}
 		else
 			ft_error();

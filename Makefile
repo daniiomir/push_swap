@@ -22,7 +22,7 @@ SRC_FOLDER = src
 OBJ_FOLDER = obj
 
 CH_SRC_NAMES = ch_main.c tools.c tools2.c p.c s.c r.c rr.c
-PS_SRC_NAMES = ps_main.c tools.c tools2.c p.c s.c r.c rr.c algorithm.c
+PS_SRC_NAMES = ps_main.c tools.c tools2.c p.c s.c r.c rr.c algorithm.c sort.c
 
 CH_SRC = $(addprefix $(SRC_FOLDER)/, $(CH_SRC_NAMES))
 PS_SRC = $(addprefix $(SRC_FOLDER)/, $(PS_SRC_NAMES))

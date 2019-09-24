@@ -6,7 +6,7 @@
 /*   By: swarner <swarner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 21:42:21 by swarner           #+#    #+#             */
-/*   Updated: 2019/09/12 16:36:00 by swarner          ###   ########.fr       */
+/*   Updated: 2019/09/24 14:42:43 by swarner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,29 @@
 static void copy_int(const int *original, int *modyfied, size_t len)
 {
 	size_t	i;
-	size_t	j;
 
+	if (!modyfied)
+		return ;
 	i = 0;
-	j = 1;
 	while (i < len)
-		modyfied[i++] = original[j++];
+	{
+		modyfied[i] = original[i + 1];
+		i++;
+	}
 }
 
 static void copy_int2(const int *original, int *modyfied, size_t len)
 {
 	size_t	i;
-	size_t	j;
 
+	if (!modyfied)
+		return ;
 	i = 0;
-	j = 0;
 	while (i < len - 1)
-		modyfied[i++] = original[j++];
+	{
+		modyfied[i] = original[i];
+		i++;
+	}
 }
 
 static void	move_int(int *stack, size_t len)
@@ -52,20 +58,26 @@ void	pa(t_tools *tools, int is_visible)
 		return ;
 	tools->size_a++;
 	tools->size_b--;
-	stack1 = (int *)malloc(sizeof(int) * tools->size_a);
-	stack2 = (int *)malloc(sizeof(int) * tools->size_b);
-	copy_int2(tools->stack_a, stack1, tools->size_a);
+	stack1 = create_stack(tools->size_a);
+	if (tools->size_b)
+		stack2 = create_stack(tools->size_b);
+	else
+		stack2 = NULL;
+	if (tools->size_a - 1 && tools->stack_a)
+		copy_int2(tools->stack_a, stack1, tools->size_a);
 	copy_int(tools->stack_b, stack2, tools->size_b);
-	if (tools->size_a)
+	if (tools->size_a - 1)
 		move_int(stack1, tools->size_a);
 	stack1[0] = tools->stack_b[0];
-	free(tools->stack_a);
-	free(tools->stack_b);
+	if (tools->stack_a)
+		free(tools->stack_a);
+	if (tools->size_b)
+		free(tools->stack_b);
 	tools->stack_a = stack1;
-	tools->stack_b = stack2;
+	if (stack2)
+		tools->stack_b = stack2;
 	if (is_visible)
 		ft_putstr("pa\n");
-//	print_stacks(tools);
 }
 
 void	pb(t_tools *tools, int is_visible)
@@ -77,15 +89,22 @@ void	pb(t_tools *tools, int is_visible)
 		return ;
 	tools->size_a--;
 	tools->size_b++;
-	stack1 = (int *)malloc(sizeof(int) * tools->size_a);
-	stack2 = (int *)malloc(sizeof(int) * tools->size_b);
+	stack1 = create_stack(tools->size_a);
+	stack2 = create_stack(tools->size_b);
 	copy_int(tools->stack_a, stack1, tools->size_a);
-	copy_int2(tools->stack_b, stack2, tools->size_b);
-	if (tools->size_b)
+//	print_stacks_dbg(tools, stack1, stack2);
+	if (tools->size_b - 1 && tools->stack_b)
+	{
+		copy_int2(tools->stack_b, stack2, tools->size_b);
+//		print_stacks_dbg(tools, stack1, stack2);
 		move_int(stack2, tools->size_b);
+//		print_stacks_dbg(tools, stack1, stack2);
+	}
 	stack2[0] = tools->stack_a[0];
+//	print_stacks_dbg(tools, stack1, stack2);
 	free(tools->stack_a);
-	free(tools->stack_b);
+	if (tools->stack_b)
+		free(tools->stack_b);
 	tools->stack_a = stack1;
 	tools->stack_b = stack2;
 	if (is_visible)

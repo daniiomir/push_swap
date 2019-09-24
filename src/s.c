@@ -6,7 +6,7 @@
 /*   By: swarner <swarner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 21:39:50 by swarner           #+#    #+#             */
-/*   Updated: 2019/09/11 18:06:11 by swarner          ###   ########.fr       */
+/*   Updated: 2019/09/21 19:26:06 by swarner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	sb(t_tools *tools, int is_visible)
 {
 	int temp;
 
-	if (!tools->size_b || tools->size_b == 1)
+	if (!tools->size_b || tools->size_b == 1
+	|| !tools->stack_b)
 		return ;
 	temp = tools->stack_b[0];
 	tools->stack_b[0] = tools->stack_b[1];

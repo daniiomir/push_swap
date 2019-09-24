@@ -6,7 +6,7 @@
 /*   By: swarner <swarner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 18:46:46 by dan               #+#    #+#             */
-/*   Updated: 2019/09/19 20:50:57 by dan              ###   ########.fr       */
+/*   Updated: 2019/09/24 15:27:10 by swarner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,27 @@ static void	algorithm_3(t_tools *tools)
 	&& tools->stack_a[1] > tools->stack_a[2]
 	&& tools->stack_a[0] < tools->stack_a[2])
 	{
-		sa(tools, 1);
-		ra(tools, 1);
+		operation(sa, tools);
+		operation(ra, tools);
 	}
 	else if (tools->stack_a[0] < tools->stack_a[1]
 	&& tools->stack_a[1] > tools->stack_a[2]
 	&& tools->stack_a[0] > tools->stack_a[2])
-		rra(tools, 1);
+		operation(rra, tools);
 	else if (tools->stack_a[0] > tools->stack_a[1]
 	&& tools->stack_a[1] < tools->stack_a[2]
 	&& tools->stack_a[0] < tools->stack_a[2])
-		sa(tools, 1);
+		operation(sa, tools);
 	else if (tools->stack_a[0] > tools->stack_a[1]
 	&& tools->stack_a[1] < tools->stack_a[2]
 	&& tools->stack_a[0] > tools->stack_a[2])
-		ra(tools, 1);
+		operation(ra, tools);
 	else if (tools->stack_a[0] > tools->stack_a[1]
 	&& tools->stack_a[1] > tools->stack_a[2]
 	&& tools->stack_a[0] > tools->stack_a[2])
 	{
-		sa(tools, 1);
-		rra(tools, 1);
+		operation(sa, tools);
+		operation(rra, tools);
 	}
 }
 
@@ -61,9 +61,9 @@ static void	algorithm_4(t_tools *tools)
 		ra(tools, 1);
 		min--;
 	}
-	pb(tools, 1);
+	operation(pb, tools);
 	algorithm_3(tools);
-	pa(tools, 1);
+	operation(pa, tools);
 }
 
 static void	algorithm_5(t_tools *tools)
@@ -84,9 +84,9 @@ static void	algorithm_5(t_tools *tools)
 		ra(tools, 1);
 		min--;
 	}
-	pb(tools, 1);
+	operation(pb, tools);
 	algorithm_4(tools);
-	pa(tools, 1);
+	operation(pa, tools);
 }
 
 void 		algorithm(t_tools *tools)
@@ -99,4 +99,6 @@ void 		algorithm(t_tools *tools)
 		algorithm_4(tools);
 	else if (tools->count_of_num == 5)
 		algorithm_5(tools);
+	else if (tools->count_of_num > 5)
+		sort(tools);
 }

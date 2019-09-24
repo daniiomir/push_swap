@@ -6,7 +6,7 @@
 /*   By: swarner <swarner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 21:42:31 by swarner           #+#    #+#             */
-/*   Updated: 2019/09/19 19:32:04 by dan              ###   ########.fr       */
+/*   Updated: 2019/09/21 19:27:44 by swarner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		ra(t_tools *tools, int is_visible)
 
 	if (!tools->size_a || tools->size_a == 1)
 		return ;
-	new_stack = (int *)malloc(sizeof(int) * tools->size_a);
+	new_stack = create_stack(tools->size_a);
 	temp = tools->stack_a[0];
 	counter = tools->size_a - 1;
 	move_int_up(tools->stack_a, new_stack, tools->size_a);
@@ -49,9 +49,10 @@ void		rb(t_tools *tools, int is_visible)
 	size_t	counter;
 	size_t	temp;
 
-	if (!tools->size_b || tools->size_b == 1)
+	if (!tools->size_b || tools->size_b == 1
+	|| !tools->stack_b)
 		return ;
-	new_stack = (int *)malloc(sizeof(int) * tools->size_a);
+	new_stack = create_stack(tools->size_b);
 	temp = tools->stack_b[0];
 	counter = tools->size_b - 1;
 	move_int_up(tools->stack_b, new_stack, tools->size_b);
