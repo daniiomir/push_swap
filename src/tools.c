@@ -6,17 +6,11 @@
 /*   By: swarner <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 15:41:09 by swarner           #+#    #+#             */
-/*   Updated: 2019/10/03 18:13:03 by swarner          ###   ########.fr       */
+/*   Updated: 2019/10/03 22:34:19 by swarner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
-
-void	ft_error(void)
-{
-	write(1, "Error\n", 6);
-}
 
 void	init_valies(t_tools *tools)
 {
@@ -43,51 +37,16 @@ int		validation(t_tools *tools, char *arg)
 	return (num);
 }
 
-size_t 	find_duplicates(t_tools *tools)
+void	ft_error(void)
 {
-	size_t			i;
-	size_t			j;
-	size_t			count;
-	size_t			is_dup;
-
-	i = 0;
-	while (i < tools->count_of_num - 1)
-	{
-		j = 0;
-		count = 0;
-		is_dup = 0;
-		while (j < tools->count_of_num)
-		{
-			if (tools->stack_a[i] == tools->stack_a[j] && !count && !is_dup)
-			{
-				if (j < tools->count_of_num)
-					j++;
-				else
-					break ;
-				count++;
-			}
-			if (tools->stack_a[i] == tools->stack_a[j])
-				return (1);
-			if (!count)
-				j++;
-			else
-			{
-				count--;
-				is_dup++;
-			}
-		}
-		if (i < tools->count_of_num)
-			i++;
-		else
-			break ;
-	}
-	return (0);
+	write(1, "Error\n", 6);
+	exit(0);
 }
 
-void 	len_for_stack(int argc, char **argv, t_tools *tools)
+void	len_for_stack(int argc, char **argv, t_tools *tools)
 {
-	int 	i;
-	size_t 	len;
+	int		i;
+	size_t	len;
 
 	i = 1;
 	while (argc > i)
@@ -97,31 +56,36 @@ void 	len_for_stack(int argc, char **argv, t_tools *tools)
 		tools->size_a += len;
 		i++;
 	}
+	if (tools->debug)
+	{
+		tools->count_of_num--;
+		tools->size_a--;
+	}
+	if (tools->debug && tools->color)
+	{
+		tools->count_of_num--;
+		tools->size_a--;
+	}
 }
 
 void	handle_arg(char *arg, t_tools *tools, size_t *counter)
 {
-	int 	num;
-	size_t 	i;
-	size_t 	j;
-	size_t 	args_count;
-	char 	**few_args;
+	size_t	i;
+	size_t	j;
+	size_t	args_count;
+	char	**few_args;
 
 	i = *counter;
 	args_count = ft_count_words(arg, ' ');
 	if (args_count == 1)
-	{
-		num = validation(tools, arg);
-		tools->stack_a[i++] = num;
-	}
+		tools->stack_a[i++] = validation(tools, arg);
 	else
 	{
 		few_args = ft_strsplit(arg, ' ');
 		j = 0;
 		while (j < args_count)
 		{
-			num = validation(tools, few_args[j]);
-            tools->stack_a[i++] = num;
+			tools->stack_a[i++] = validation(tools, few_args[j]);
 			free(few_args[j++]);
 		}
 		free(few_args);

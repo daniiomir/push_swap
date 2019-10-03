@@ -13,7 +13,7 @@
 #include "push_swap.h"
 #include "operations.h"
 
-int		find_place_in_a(int *stack, int len, int elem, char **rot_type)
+int			find_place_in_a(int *stack, int len, int elem, char **rot_type)
 {
 	int		i;
 	int		place;
@@ -24,7 +24,8 @@ int		find_place_in_a(int *stack, int len, int elem, char **rot_type)
 		place = 1;
 	else if (len == 2 && elem < stack[0] && elem > stack[1])
 		place = 0;
-	else if (elem > stack[find_max_elem(stack, len)] || elem < stack[find_min_elem(stack, len)])
+	else if (elem > stack[find_max_elem(stack, len)]
+		|| elem < stack[find_min_elem(stack, len)])
 		place = find_min_elem(stack, len);
 	else
 		while (i < len)
@@ -50,7 +51,7 @@ static void	insert_back_in_a(t_tools *tools)
 	while (tools->size_b)
 	{
 		num_of_rots = find_place_in_a(tools->stack_a,
-									  tools->size_a, tools->stack_b[0], &rot_type);
+				tools->size_a, tools->stack_b[0], &rot_type);
 		while (num_of_rots > 0)
 		{
 			if (ft_strequ(rot_type, "ra"))
@@ -104,10 +105,10 @@ static void	process_moves(t_moves *best_move, t_tools *tools)
 
 void		global_sort(t_tools *tools)
 {
-	t_moves *best_move;
+	t_moves		*best_move;
 	size_t		optimizer;
 
-	optimizer = (tools->size_a > 200)? 50 : 2;
+	optimizer = (tools->size_a > 200) ? 50 : 2;
 	while (tools->size_b != 2)
 		operation(pb, tools);
 	while (tools->size_a > optimizer)

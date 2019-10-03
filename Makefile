@@ -21,9 +21,9 @@ FLAGS = -Wall -Wextra -Werror
 SRC_FOLDER = src
 OBJ_FOLDER = obj
 
-CH_SRC_NAMES = ch_main.c tools.c tools2.c p.c s.c r.c rr.c
+CH_SRC_NAMES = ch_main.c tools.c tools2.c p.c s.c r.c rr.c tools3.c
 
-PS_SRC_NAMES = ps_main.c tools.c tools2.c p.c s.c r.c rr.c algorithm.c global_sort.c best_way_from_a_to_b.c sort_helper.c rot_type.c
+PS_SRC_NAMES = ps_main.c tools.c tools2.c p.c s.c r.c rr.c algorithm.c global_sort.c best_way_from_a_to_b.c sort_helper.c rot_type.c tools3.c
 
 CH_SRC = $(addprefix $(SRC_FOLDER)/, $(CH_SRC_NAMES))
 PS_SRC = $(addprefix $(SRC_FOLDER)/, $(PS_SRC_NAMES))

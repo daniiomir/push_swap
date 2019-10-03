@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-size_t	ft_count_words(const char *s, char c)
+size_t			ft_count_words(const char *s, char c)
 {
 	size_t		cnt;
 	size_t		in_substring;

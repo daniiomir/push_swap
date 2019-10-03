@@ -14,7 +14,7 @@
 
 static void	move_int_up(const int *original, int *new, size_t len)
 {
-	size_t 	i;
+	size_t	i;
 
 	i = len;
 	while (--i)
@@ -25,7 +25,7 @@ static void	move_int_up(const int *original, int *new, size_t len)
 
 void		ra(t_tools *tools, int is_visible)
 {
-	int 	*new_stack;
+	int		*new_stack;
 	size_t	counter;
 	size_t	temp;
 
@@ -40,12 +40,11 @@ void		ra(t_tools *tools, int is_visible)
 	tools->stack_a = new_stack;
 	if (is_visible)
 		ft_putstr("ra\n");
-//	print_stacks(tools);
 }
 
 void		rb(t_tools *tools, int is_visible)
 {
-	int 	*new_stack;
+	int		*new_stack;
 	size_t	counter;
 	size_t	temp;
 
@@ -61,7 +60,6 @@ void		rb(t_tools *tools, int is_visible)
 	tools->stack_b = new_stack;
 	if (is_visible)
 		ft_putstr("rb\n");
-//	print_stacks(tools);
 }
 
 void		rr(t_tools *tools, int is_visible)

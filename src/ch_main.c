@@ -54,11 +54,27 @@ static void	checker(t_tools *tools)
 	}
 }
 
+static void	into_checker(t_tools *tools)
+{
+	if (!tools->error && !find_duplicates(tools))
+	{
+		checker(tools);
+		if (tools->error)
+			ft_error();
+		else if (is_sorted(tools) && !tools->size_b)
+			ft_putstr("\x1b[32mOK\n");
+		else
+			ft_putstr("\x1b[31mKO\n");
+	}
+	else
+		ft_error();
+}
+
 int			main(int argc, char **argv)
 {
-	int		    i;
-	size_t 		counter;
-	t_tools	    tools;
+	int			i;
+	size_t		counter;
+	t_tools		tools;
 
 	if (argc > 1)
 	{
@@ -71,21 +87,9 @@ int			main(int argc, char **argv)
 		tools.stack_b = create_stack(tools.count_of_num);
 		while (argc > i)
 			handle_arg(argv[i++], &tools, &counter);
-		if (!tools.error && !find_duplicates(&tools))
-		{
-			checker(&tools);
-			if (tools.error)
-				ft_error();
-			else if (is_sorted(&tools) && !tools.size_b)
-				ft_putstr("\x1b[32mOK\n");
-			else
-				ft_putstr("\x1b[31mKO\n");
-		}
-		else
-			ft_error();
+		into_checker(&tools);
 		free(tools.stack_a);
 		if (tools.stack_b)
 			free(tools.stack_b);
 	}
 }
-

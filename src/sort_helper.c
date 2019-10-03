@@ -13,11 +13,11 @@
 #include "push_swap.h"
 #include "operations.h"
 
-int 	find_min_index(const int *stack, int len)
+int		find_min_index(const int *stack, int len)
 {
-	register int i;
-	register int tmp;
-	register int index;
+	int		i;
+	int		tmp;
+	int		index;
 
 	if (len == 0)
 		return (-1);
@@ -36,11 +36,11 @@ int 	find_min_index(const int *stack, int len)
 	return (index);
 }
 
-int 	find_max_index(const int *stack, int len)
+int		find_max_index(const int *stack, int len)
 {
-	register int i;
-	register int tmp;
-	register int index;
+	int		i;
+	int		tmp;
+	int		index;
 
 	if (len == 0)
 		return (-1);
@@ -59,7 +59,7 @@ int 	find_max_index(const int *stack, int len)
 	return (index);
 }
 
-int 	find_min_elem(const int *stack, int stack_len)
+int		find_min_elem(const int *stack, int stack_len)
 {
 	register int i;
 	register int tmp;
@@ -82,7 +82,7 @@ int 	find_min_elem(const int *stack, int stack_len)
 	return (index);
 }
 
-int 	find_max_elem(const int *stack, int stack_len)
+int		find_max_elem(const int *stack, int stack_len)
 {
 	int i;
 	int tmp;
@@ -107,7 +107,7 @@ int 	find_max_elem(const int *stack, int stack_len)
 
 void	place_smallest_first_a(t_tools *tools)
 {
-	size_t 	min_index;
+	size_t	min_index;
 
 	min_index = find_min_index(tools->stack_a, tools->size_a);
 	if (min_index <= tools->size_a / 2)

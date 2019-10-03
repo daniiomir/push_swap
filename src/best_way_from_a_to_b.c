@@ -24,7 +24,7 @@ static int		find_place_in_b(int *stack, int len, int elem, char **rot_type)
 	else if (len == 2 && elem < stack[0] && elem > stack[len - 1])
 		place = 1;
 	else if (elem > stack[find_max_elem(stack, len)] ||
-			 elem < stack[find_min_elem(stack, len)])
+			elem < stack[find_min_elem(stack, len)])
 		place = find_max_elem(stack, len);
 	else
 		while (i < len)
@@ -45,10 +45,13 @@ static int		find_common(t_moves *moves)
 	register int		common;
 
 	common = 0;
-	if ((ft_strequ(moves->a_rot_type, "rra") && (ft_strequ(moves->b_rot_type , "rrb"))) ||
-		(ft_strequ(moves->a_rot_type, "ra") && (ft_strequ(moves->b_rot_type , "rb"))))
+	if ((ft_strequ(moves->a_rot_type, "rra")
+		&& (ft_strequ(moves->b_rot_type, "rrb"))) ||
+		(ft_strequ(moves->a_rot_type, "ra")
+		&& (ft_strequ(moves->b_rot_type, "rb"))))
 	{
-		common = (moves->a_moves > moves->b_moves ? moves->b_moves : moves->a_moves);
+		common = (moves->a_moves > moves->b_moves ?
+			moves->b_moves : moves->a_moves);
 		if (common)
 		{
 			moves->common_rot = ft_strcpy(moves->common_rot, moves->a_rot_type);
@@ -71,7 +74,7 @@ static t_moves	*calc_moves_from_a_to_b(t_tools *tools, int pos)
 	moves->elem = tools->stack_a[pos];
 	moves->a_moves = find_a_rot_type(tools->size_a, pos, &(moves->a_rot_type));
 	moves->b_moves = find_place_in_b(tools->stack_b, tools->size_b,
-									 tools->stack_a[pos], &(moves->b_rot_type));
+									tools->stack_a[pos], &(moves->b_rot_type));
 	moves->common_moves = find_common(moves);
 	moves->total = moves->a_moves + moves->b_moves + moves->common_moves + 1;
 	return (moves);

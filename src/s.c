@@ -23,7 +23,6 @@ void	sa(t_tools *tools, int is_visible)
 	tools->stack_a[1] = temp;
 	if (is_visible)
 		ft_putstr("sa\n");
-//	print_stacks(tools);
 }
 
 void	sb(t_tools *tools, int is_visible)
@@ -38,7 +37,6 @@ void	sb(t_tools *tools, int is_visible)
 	tools->stack_b[1] = temp;
 	if (is_visible)
 		ft_putstr("sb\n");
-//	print_stacks(tools);
 }
 
 void	ss(t_tools *tools, int is_visible)

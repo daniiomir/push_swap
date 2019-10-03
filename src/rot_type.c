@@ -37,4 +37,3 @@ int		find_b_rot_type(int len, int pos, char **b_rot_type)
 		*b_rot_type = ft_strcpy(*b_rot_type, "rb");
 	return (pos);
 }
-

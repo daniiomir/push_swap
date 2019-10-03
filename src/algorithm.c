@@ -13,6 +13,12 @@
 #include "push_swap.h"
 #include "operations.h"
 
+static void	for_al3(t_tools *tools)
+{
+	operation(sa, tools);
+	operation(rra, tools);
+}
+
 void		algorithm_3(t_tools *tools)
 {
 	if (tools->stack_a[0] < tools->stack_a[1]
@@ -37,16 +43,13 @@ void		algorithm_3(t_tools *tools)
 	else if (tools->stack_a[0] > tools->stack_a[1]
 	&& tools->stack_a[1] > tools->stack_a[2]
 	&& tools->stack_a[0] > tools->stack_a[2])
-	{
-		operation(sa, tools);
-		operation(rra, tools);
-	}
+		for_al3(tools);
 }
 
 static void	algorithm_4(t_tools *tools)
 {
 	size_t	i;
-	size_t 	min;
+	size_t	min;
 
 	i = 0;
 	min = 0;
@@ -69,7 +72,7 @@ static void	algorithm_4(t_tools *tools)
 static void	algorithm_5(t_tools *tools)
 {
 	size_t	i;
-	size_t 	min;
+	size_t	min;
 
 	i = 0;
 	min = 0;
@@ -89,7 +92,7 @@ static void	algorithm_5(t_tools *tools)
 	operation(pa, tools);
 }
 
-void 		algorithm(t_tools *tools)
+void		algorithm(t_tools *tools)
 {
 	if (tools->count_of_num == 2)
 		sa(tools, 1);

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void copy_int(const int *original, int *modyfied, size_t len)
+static void	copy_int(const int *original, int *modyfied, size_t len)
 {
 	size_t	i;
 
@@ -26,7 +26,7 @@ static void copy_int(const int *original, int *modyfied, size_t len)
 	}
 }
 
-static void copy_int2(const int *original, int *modyfied, size_t len)
+static void	copy_int2(const int *original, int *modyfied, size_t len)
 {
 	size_t	i;
 
@@ -49,7 +49,7 @@ static void	move_int(int *stack, size_t len)
 		stack[i + 1] = stack[i];
 }
 
-void	pa(t_tools *tools, int is_visible)
+void		pa(t_tools *tools, int is_visible)
 {
 	int		*stack1;
 	int		*stack2;
@@ -69,10 +69,7 @@ void	pa(t_tools *tools, int is_visible)
 	if (tools->size_a - 1)
 		move_int(stack1, tools->size_a);
 	stack1[0] = tools->stack_b[0];
-	if (tools->stack_a)
-		free(tools->stack_a);
-	if (tools->size_b)
-		free(tools->stack_b);
+	free_stacks(tools);
 	tools->stack_a = stack1;
 	if (stack2)
 		tools->stack_b = stack2;
@@ -80,7 +77,7 @@ void	pa(t_tools *tools, int is_visible)
 		ft_putstr("pa\n");
 }
 
-void	pb(t_tools *tools, int is_visible)
+void		pb(t_tools *tools, int is_visible)
 {
 	int		*stack1;
 	int		*stack2;
