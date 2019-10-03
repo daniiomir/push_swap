@@ -6,7 +6,7 @@
 /*   By: swarner <swarner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 21:42:21 by swarner           #+#    #+#             */
-/*   Updated: 2019/09/24 14:42:43 by swarner          ###   ########.fr       */
+/*   Updated: 2019/10/03 17:18:57 by swarner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,12 @@ void	pb(t_tools *tools, int is_visible)
 	stack1 = create_stack(tools->size_a);
 	stack2 = create_stack(tools->size_b);
 	copy_int(tools->stack_a, stack1, tools->size_a);
-//	print_stacks_dbg(tools, stack1, stack2);
 	if (tools->size_b - 1 && tools->stack_b)
 	{
 		copy_int2(tools->stack_b, stack2, tools->size_b);
-//		print_stacks_dbg(tools, stack1, stack2);
 		move_int(stack2, tools->size_b);
-//		print_stacks_dbg(tools, stack1, stack2);
 	}
 	stack2[0] = tools->stack_a[0];
-//	print_stacks_dbg(tools, stack1, stack2);
 	free(tools->stack_a);
 	if (tools->stack_b)
 		free(tools->stack_b);
@@ -109,5 +105,4 @@ void	pb(t_tools *tools, int is_visible)
 	tools->stack_b = stack2;
 	if (is_visible)
 		ft_putstr("pb\n");
-//	print_stacks(tools);
 }

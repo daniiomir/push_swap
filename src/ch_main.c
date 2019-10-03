@@ -6,7 +6,7 @@
 /*   By: swarner <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 15:24:53 by swarner           #+#    #+#             */
-/*   Updated: 2019/09/24 16:09:44 by swarner          ###   ########.fr       */
+/*   Updated: 2019/10/03 17:18:57 by swarner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ int			main(int argc, char **argv)
 		else
 			ft_error();
 		free(tools.stack_a);
-		free(tools.stack_b);
+		if (tools.stack_b)
+			free(tools.stack_b);
 	}
 }
 

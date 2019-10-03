@@ -6,14 +6,14 @@
 /*   By: swarner <swarner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 18:46:46 by dan               #+#    #+#             */
-/*   Updated: 2019/09/24 15:27:10 by swarner          ###   ########.fr       */
+/*   Updated: 2019/10/03 17:19:05 by swarner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "operations.h"
 
-static void	algorithm_3(t_tools *tools)
+void		algorithm_3(t_tools *tools)
 {
 	if (tools->stack_a[0] < tools->stack_a[1]
 	&& tools->stack_a[1] > tools->stack_a[2]
@@ -58,7 +58,7 @@ static void	algorithm_4(t_tools *tools)
 	}
 	while (min)
 	{
-		ra(tools, 1);
+		operation(ra, tools);
 		min--;
 	}
 	operation(pb, tools);
@@ -81,7 +81,7 @@ static void	algorithm_5(t_tools *tools)
 	}
 	while (min)
 	{
-		ra(tools, 1);
+		operation(ra, tools);
 		min--;
 	}
 	operation(pb, tools);
@@ -100,5 +100,5 @@ void 		algorithm(t_tools *tools)
 	else if (tools->count_of_num == 5)
 		algorithm_5(tools);
 	else if (tools->count_of_num > 5)
-		sort(tools);
+		global_sort(tools);
 }

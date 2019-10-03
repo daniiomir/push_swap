@@ -6,7 +6,7 @@
 /*   By: swarner <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 15:41:09 by swarner           #+#    #+#             */
-/*   Updated: 2019/09/24 15:02:00 by swarner          ###   ########.fr       */
+/*   Updated: 2019/10/03 18:13:03 by swarner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ void	init_valies(t_tools *tools)
 	tools->size_b = 0;
 	tools->error = 0;
 	tools->debug = 0;
+	tools->color = 0;
 	tools->is_visible = 0;
+	tools->op_count = 0;
 }
 
 int		validation(t_tools *tools, char *arg)
@@ -33,9 +35,10 @@ int		validation(t_tools *tools, char *arg)
 	ssize_t	num;
 
 	num = ft_atoi(arg);
-	if (num > 2147483647 || num < -2147483648 || num == -1)
+	if (num > 2147483647 || num < -2147483648)
 		tools->error = 1;
-	if (num + '0' != arg[0] && num == 0)
+	if ((num + '0' != arg[0] && num == 0)
+	|| (-num + '0' != arg[1] && num == -1))
 		tools->error = 1;
 	return (num);
 }

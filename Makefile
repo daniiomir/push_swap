@@ -6,7 +6,7 @@
 #    By: swarner <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/02 13:43:12 by swarner           #+#    #+#              #
-#    Updated: 2019/09/12 18:59:24 by swarner          ###   ########.fr        #
+#    Updated: 2019/10/03 21:10:44 by swarner          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC_FOLDER = src
 OBJ_FOLDER = obj
 
 CH_SRC_NAMES = ch_main.c tools.c tools2.c p.c s.c r.c rr.c
-PS_SRC_NAMES = ps_main.c tools.c tools2.c p.c s.c r.c rr.c algorithm.c sort.c
+
+PS_SRC_NAMES = ps_main.c tools.c tools2.c p.c s.c r.c rr.c algorithm.c global_sort.c best_way_from_a_to_b.c sort_helper.c rot_type.c
 
 CH_SRC = $(addprefix $(SRC_FOLDER)/, $(CH_SRC_NAMES))
 PS_SRC = $(addprefix $(SRC_FOLDER)/, $(PS_SRC_NAMES))
