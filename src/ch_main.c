@@ -48,9 +48,9 @@ static void	checker(t_tools *tools)
 	while (get_next_line(0, &operation))
 	{
 		find_operations(tools, operation);
+		free(operation);
 		if (tools->error)
 			return ;
-		free(operation);
 	}
 }
 
